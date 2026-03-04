@@ -1,0 +1,282 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Google Font imports happen in index.html ── */
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-soul-dark text-white font-sans antialiased;
+    background-color: #0A0400;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0A0400;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #C9A84C;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #E8C96D;
+  }
+}
+
+@layer components {
+
+  /* ── Gold Divider ── */
+  .gold-divider {
+    @apply w-full h-px;
+    background: linear-gradient(90deg, transparent, #C9A84C 30%, #E8C96D 50%, #C9A84C 70%, transparent);
+  }
+
+  .gold-divider-sm {
+    @apply w-24 h-px mx-auto;
+    background: linear-gradient(90deg, transparent, #C9A84C, #E8C96D, #C9A84C, transparent);
+  }
+
+  /* ── Gold Text ── */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #8B6914 0%, #C9A84C 30%, #F5D98B 60%, #C9A84C 80%, #8B6914 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Buttons ── */
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3 text-sm font-bold tracking-widest uppercase;
+    border: 1.5px solid #C9A84C;
+    color: #C9A84C;
+    background: transparent;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-gold::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #C9A84C;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+    z-index: 0;
+  }
+  .btn-gold:hover::before { transform: scaleX(1); }
+  .btn-gold:hover { color: #0A0400; }
+  .btn-gold span, .btn-gold svg { position: relative; z-index: 1; }
+
+  .btn-gold-solid {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3 text-sm font-bold tracking-widest uppercase;
+    background: linear-gradient(135deg, #8B6914, #C9A84C, #E8C96D, #C9A84C, #8B6914);
+    background-size: 200% 100%;
+    color: #0A0400;
+    transition: all 0.4s ease;
+  }
+  .btn-gold-solid:hover {
+    background-position: right center;
+    box-shadow: 0 0 30px rgba(201,168,76,0.5);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline-white {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3 text-sm font-semibold tracking-wider uppercase border border-white/30 text-white/80 hover:border-gold hover:text-gold transition-all duration-300;
+  }
+
+  /* ── Card Glass ── */
+  .card-glass {
+    background: rgba(20, 8, 0, 0.85);
+    border: 1px solid rgba(201, 168, 76, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .card-glass-hover {
+    @apply card-glass transition-all duration-500;
+  }
+  .card-glass-hover:hover {
+    border-color: rgba(201, 168, 76, 0.4);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 30px rgba(201,168,76,0.12);
+    transform: translateY(-4px);
+  }
+
+  /* ── Section Container ── */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* ── Section Heading ── */
+  .section-heading {
+    @apply font-display text-3xl sm:text-4xl lg:text-5xl font-bold;
+  }
+
+  /* ── Badge ── */
+  .badge-gold {
+    @apply inline-block px-3 py-1 text-xs font-bold tracking-widest uppercase;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: #C9A84C;
+  }
+
+  .badge-organic {
+    @apply inline-block px-3 py-1 text-xs font-bold tracking-wider uppercase;
+    background: rgba(76,140,76,0.15);
+    border: 1px solid rgba(76,140,76,0.4);
+    color: #6BBF6B;
+  }
+
+  /* ── Bokeh effect ── */
+  .bokeh-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  /* ── Nav Link ── */
+  .nav-link {
+    @apply relative text-sm font-medium tracking-wider text-white/80 hover:text-gold transition-colors duration-300 py-1;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: #C9A84C;
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+  .nav-link.active { @apply text-gold; }
+
+  /* ── Product Card ── */
+  .product-card {
+    @apply relative overflow-hidden cursor-pointer;
+    background: #120700;
+    border: 1px solid rgba(201,168,76,0.12);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .product-card:hover {
+    border-color: rgba(201,168,76,0.45);
+    transform: translateY(-6px);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.7), 0 0 40px rgba(201,168,76,0.1);
+  }
+
+  /* ── Star Rating ── */
+  .star-filled { color: #C9A84C; }
+  .star-empty { color: rgba(201,168,76,0.25); }
+
+  /* ── Input Field ── */
+  .input-soul {
+    @apply w-full bg-transparent border border-white/20 text-white placeholder-white/40 px-4 py-3 text-sm focus:outline-none focus:border-gold transition-colors duration-300;
+  }
+
+  /* ── Roast Badge ── */
+  .roast-light { background: rgba(255,220,120,0.15); color: #FFD878; border: 1px solid rgba(255,220,120,0.3); }
+  .roast-medium { background: rgba(200,140,60,0.15); color: #C88C3C; border: 1px solid rgba(200,140,60,0.3); }
+  .roast-dark { background: rgba(100,50,10,0.3); color: #B87840; border: 1px solid rgba(100,50,10,0.5); }
+
+  /* ── Sparkle ── */
+  .sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #C9A84C;
+    border-radius: 50%;
+    animation: twinkle 2s ease-in-out infinite;
+  }
+
+  /* ── Announcement bar highlight ── */
+  .announcement-bar {
+    background: linear-gradient(90deg, #0A0400 0%, #1E0D00 50%, #0A0400 100%);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  /* ── Hero section ── */
+  .hero-section {
+    background:
+      radial-gradient(ellipse 70% 55% at 10% 55%, rgba(180,100,10,0.50) 0%, transparent 65%),
+      radial-gradient(ellipse 45% 40% at 72% 22%, rgba(200,140,30,0.28) 0%, transparent 58%),
+      radial-gradient(ellipse 35% 50% at 90% 78%, rgba(160,90,10,0.32) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 35% at 40% 85%, rgba(140,80,5,0.22) 0%, transparent 55%),
+      radial-gradient(ellipse 25% 25% at 55% 10%, rgba(220,160,50,0.18) 0%, transparent 50%),
+      linear-gradient(160deg, #050200 0%, #100700 35%, #1C0E00 60%, #0D0600 85%, #050200 100%);
+    min-height: 85vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── Grain overlay ── */
+  .grain-overlay::before {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    animation: grain 8s steps(10) infinite;
+    z-index: 1;
+  }
+
+  /* ── Number input ── */
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] { -moz-appearance: textfield; }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+
+  .bg-shimmer {
+    background: linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.08) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2.5s linear infinite;
+  }
+
+  .clip-star {
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+}
+
+/* ── Swiper custom styles ── */
+.swiper-pagination-bullet {
+  background: rgba(201,168,76,0.4) !important;
+  width: 8px !important;
+  height: 8px !important;
+}
+.swiper-pagination-bullet-active {
+  background: #C9A84C !important;
+  width: 28px !important;
+  border-radius: 4px !important;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  color: #C9A84C !important;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 18px !important;
+  font-weight: 700;
+}
